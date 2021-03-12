@@ -5,14 +5,23 @@
 <h1><strong>Your Bullet Journal</strong></h1>
 
     {% if name %}
-        <h2>Good Day, {{name}}!</h2>
-    {% else %}
-        <h2>Hello! What's your name?</h2>
+        <h2>Good Day, {{name}}!</h2> <br>
 
         <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+            not you? <input class="btn-sm btn-info" type="submit"  name ="name" value="yes" >
+            <input type="hidden" name="name" value="a">
+        </form>
+
+    {% else %}
+
+        <h2>Hello! What's your name?</h2>
+
+        <form action="{% url 'name' %}" method="post">
             {% csrf_token %}
             <input type="text" name="name">
             <input type="submit" value="submit">
         </form>
+
     {% endif %}
 {% endblock %}
