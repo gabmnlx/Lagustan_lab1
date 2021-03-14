@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Name
+from datetime import date, datetime
 
 
 def home(request):
@@ -32,8 +33,18 @@ def profile(request):
 
 
 def week(request):
+    
     return render(request, 'week.html')
 
 
 def key(request):
     return render(request, 'key.html')
+
+
+def today(request):
+    today = datetime.now().strftime('%m.%d')
+    day = datetime.today().strftime('%A')[0:3].upper()
+    date = today + '.' + day
+
+    
+    return render(request, 'today.html',{'date':date})
